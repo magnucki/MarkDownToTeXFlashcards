@@ -1,0 +1,146 @@
+%
+%    * ----------------------------------------------------------------
+%    * "THE BEER-WARE LICENSE" (Revision 42/023):
+%    * Ronny Bergmann <mail@rbergmann.info> wrote this file. As long as
+%    * you retain this notice you can do whatever you want with this
+%    * stuff. If we meet some day and you think this stuff is worth it,
+%    * you can buy me a beer or a coffee in return.
+%    * ----------------------------------------------------------------
+%
+%
+% Kartei Source Code of A7 page style definition
+%
+% Last Change: Kartei 1.9, 2012/01/04
+%
+\pgfpagesdeclarelayout{cardprintA7}
+{%
+	\edef\pgfpageoptionheight{\the\paperheight}%
+	\edef\pgfpageoptionwidth{\the\paperwidth}%
+	\edef\pgfpageoptionborder{1pt}%
+}%
+{
+  \pgfpagesphysicalpageoptions%
+  {%
+    logical pages=16,%
+    physical height=\pgfpageoptionheight,%
+    physical width=\pgfpageoptionwidth,%
+  }%
+%
+% Front (odd pages)
+%
+  \pgfpageslogicalpageoptions{1}% First Card
+  {%
+    border shrink=\pgfpageoptionborder,%
+    original width=.25\pgfpageoptionheight,%
+    original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{0pt}{\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{3}% Second Card
+  {%
+    border shrink=\pgfpageoptionborder,%
+    original width=.25\pgfpageoptionheight,%
+    original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{.5\pgfphysicalwidth}{\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{5}% Third Card
+  {%
+  	border shrink=\pgfpageoptionborder,%
+  	original width=.25\pgfpageoptionheight,%
+  	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{0pt}{.75\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{7}% Fourth Card
+  {%
+  	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{.5\pgfphysicalwidth}{.75\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{9}% Fifth Card
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{0pt}{.5\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{11} % Sixth Card
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{13} % Seventh Card
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{0pt}{.25\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{15} % Eigth Card
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{.5\pgfphysicalwidth}{.25\pgfphysicalheight},%
+  }%
+%
+% Rearsides (Even Pages)
+%
+  \pgfpageslogicalpageoptions{2} % First Card
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{.5\pgfphysicalwidth}{\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{4} % Second Card
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{0pt}{\pgfphysicalheight},%
+	}%
+  \pgfpageslogicalpageoptions{6} % Third Card
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{.5\pgfphysicalwidth}{.75\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{8} % 1
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{0pt}{.75\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{10} % 1
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{12} % 1
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{0pt}{.5\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{14} % 1
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{.5\pgfphysicalwidth}{.25\pgfphysicalheight},%
+  }%
+  \pgfpageslogicalpageoptions{16} % 1
+  {%
+	border shrink=\pgfpageoptionborder,%
+	original width=.25\pgfpageoptionheight,%
+	original height=.5\pgfpageoptionwidth,%
+	center=\pgfpoint{0pt}{.25\pgfphysicalheight},%
+  }%
+}%
