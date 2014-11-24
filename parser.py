@@ -1,6 +1,5 @@
 # Author Rico Magnucki
 
-import os
 from enum import Enum, unique
 
 
@@ -35,12 +34,11 @@ ANSWER_TAG = "_"
 SECTION_TAG = "# "
 SUBSECTION_TAG = "## "
 
-
 SECTION = "\section*{"
 SUBSECTION = "\subsection*{"
 
-
-PACKAGES = [("inputenc", "utf8"), ("fontenc", "T1"), ("libertine", ""), ("babel", "ngerman")]
+PACKAGES = [("inputenc", "utf8"), ("fontenc", "T1"),
+            ("libertine", ""), ("babel", "ngerman")]
 
 DOCUMENTCLASS = "\documentclass[a7paper,grid=rear]{Kartei/kartei}\n"
 
@@ -79,16 +77,19 @@ def process_file():
 def parse_markdown(text_input):
     for string in text_input:
         if string.startswith(QUESTION_TAG):
-            TEX_FILE.write(QUESTION_START + string.strip('* \n') + CLOSING_BRACE)
+            TEX_FILE.write(
+                QUESTION_START + string.strip('* \n') + CLOSING_BRACE)
         elif string.startswith(ANSWER_TAG):
             TEX_FILE.write(string.strip('_\n') + QUESTION_END)
         elif string.startswith(SECTION_TAG):
-            TEX_FILE.write(SECTION + string.strip('# \n') + CLOSING_BRACE)
+            TEX_FILE.write(
+                SECTION + string.strip('# \n') + CLOSING_BRACE)
         elif string.startswith(SUBSECTION_TAG):
-            TEX_FILE.write(SUBSECTION + string.strip('#\n') + CLOSING_BRACE)
+            TEX_FILE.write(
+                SUBSECTION + string.strip('#\n') + CLOSING_BRACE)
 
 
-def setCurrentState(prefix):
+def set_current_state(prefix):
     if prefix is QUESTION_TAG:
         currentState = State.QUESTION
     elif prefix is ANSWER_TAG:
@@ -101,13 +102,14 @@ def setCurrentState(prefix):
 
 def validate_input(linePrefix):
     lastState = CURRENT_STATE
-    setCurrentState(linePrefix)
+    set_current_state(linePrefix)
     if CURRENT_STATE is State.QUESTION and (
-                        lastState is State.SECTION or lastState is State.SUBSECTION or lastState is State.ANSWER):
+       lastState is State.SECTION or lastState is State.SUBSECTION or lastState is State.ANSWER):
         return True
     elif CURRENT_STATE is State.ANSWER and lastState is State.QUESTION:
         return True
-    elif CURRENT_STATE is State.SECTION and (lastState is State.SUBSECTION or lastState.ANSWER):
+    elif CURRENT_STATE is State.SECTION and (
+         lastState is State.SUBSECTION or lastState.ANSWER):
         return True
 
 
