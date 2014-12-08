@@ -36,12 +36,13 @@ QUESTION_TAG = "* "
 ANSWER_TAG = "_"
 SECTION_TAG = "# "
 SUBSECTION_TAG = "## "
+PICTURE_TAG = "BILD: "
 
 SECTION = "\section*{"
 SUBSECTION = "\subsection*{"
 
 PACKAGES = [("inputenc", "utf8"), ("fontenc", "T1"),
-            ("libertine", ""), ("babel", "ngerman")]
+            ("libertine", ""), ("babel", "ngerman"), ("graphicx", "")]
 
 DOCUMENTCLASS = "\documentclass[a7paper,grid=rear]{Kartei/kartei}\n"
 
@@ -90,6 +91,9 @@ def parse_markdown(text_input):
         elif string.startswith(SUBSECTION_TAG):
             TEX_FILE.write(
                 SUBSECTION + string.strip('#\n') + CLOSING_BRACE)
+        elif string.startswith(PICTURE_TAG):
+            TEX_FILE.write(
+                BEGIN_FIGURE + PICTURE_INCLUDE + string.strip(PICTURE_TAG + '\n') + CLOSING_BRACE + END_FIGURE)
 
 
 def set_current_state(prefix):
