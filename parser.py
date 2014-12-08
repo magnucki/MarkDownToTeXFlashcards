@@ -14,7 +14,8 @@ class State(Enum):
     SUBSECTION = 6
 
 
-INPUT_FILE = "sampleinput.md"
+# INPUT_FILE = "sampleinput.md"
+INPUT_FILE = "/Users/Rico/Dev/TeX/neurobio_Karteikarten/NB_Kartei.md"
 OUTPUT_FILE = ""
 
 QUESTION_START = "\\begin{karte}{"
