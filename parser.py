@@ -80,10 +80,16 @@ def process_file():
 
 def parse_markdown(text_input):
     for string in text_input:
+        string.rstrip(' ')
         if string.startswith(QUESTION_TAG):
             TEX_FILE.write(
                 QUESTION_START + string.strip('* \n') + CLOSING_BRACE)
         elif string.startswith(ANSWER_TAG):
+            if (string.endswith(ANSWER_TAG + "\n") or string.endswith(ANSWER_TAG)):
+                TEX_FILE.write(string.strip('_') + QUESTION_END)
+            else:
+                TEX_FILE.write(string.strip('_'))
+        elif (string.endswith(ANSWER_TAG + "\n")):
             TEX_FILE.write(string.strip('_\n') + QUESTION_END)
         elif string.startswith(SECTION_TAG):
             TEX_FILE.write(
@@ -94,6 +100,10 @@ def parse_markdown(text_input):
         elif string.startswith(PICTURE_TAG):
             TEX_FILE.write(
                 BEGIN_FIGURE + PICTURE_INCLUDE + string.strip(PICTURE_TAG + '\n') + CLOSING_BRACE + END_FIGURE)
+        elif string.endswith(ANSWER_TAG):
+            TEX_FILE.write(string.strip(QUESTION_TAG) + QUESTION_END)
+        else:
+            TEX_FILE.write(string)
 
 
 def set_current_state(prefix):
