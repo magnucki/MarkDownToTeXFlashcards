@@ -26,6 +26,9 @@ BEGIN_DOCUMENT = "\\begin{document}\n"
 END_DOCUMENT = "\end{document}\n"
 CONTENT = ''
 CLOSING_BRACE = "}\n"
+BEGIN_FIGURE = "\\begin{figure}\n\centering\n"
+PICTURE_INCLUDE = "\includegraphics[width=0.8\pagewidth]{"
+END_FIGURE = "\\end{figure}\n"
 CURRENT_STATE = State.NONE
 LAST_STATE = State.NONE
 
