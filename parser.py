@@ -1,6 +1,7 @@
 # Author Rico Magnucki
 
 from enum import Enum, unique
+import os
 
 
 @unique
@@ -45,7 +46,7 @@ SUBSECTION = "\subsection*{"
 PACKAGES = [("inputenc", "utf8"), ("fontenc", "T1"),
             ("libertine", ""), ("babel", "ngerman"), ("graphicx", "")]
 
-DOCUMENTCLASS = "\documentclass[a7paper,grid=rear]{Kartei/kartei}\n"
+DOCUMENTCLASS = "\documentclass[a7paper,grid=rear]{kartei}\n"
 
 TEX_FILE = open("flashcards.tex", "w+")
 
@@ -122,13 +123,17 @@ def validate_input(linePrefix):
     lastState = CURRENT_STATE
     set_current_state(linePrefix)
     if CURRENT_STATE is State.QUESTION and (
-       lastState is State.SECTION or lastState is State.SUBSECTION or lastState is State.ANSWER):
+                        lastState is State.SECTION or lastState is State.SUBSECTION or lastState is State.ANSWER):
         return True
     elif CURRENT_STATE is State.ANSWER and lastState is State.QUESTION:
         return True
     elif CURRENT_STATE is State.SECTION and (
-         lastState is State.SUBSECTION or lastState.ANSWER):
+                    lastState is State.SUBSECTION or lastState.ANSWER):
         return True
+
+
+def clean_tex_files():
+    os.system("rm flashcards*")
 
 
 init_tex()
@@ -136,4 +141,4 @@ process_file()
 close_tex()
 
 # Run pdflatex to create pdf files
-# os.system("pdflatex flashcards.tex")
+#os.system("pdflatex flashcards.tex")
