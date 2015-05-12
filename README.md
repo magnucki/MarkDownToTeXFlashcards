@@ -11,6 +11,7 @@ With Version 0.1 the tool reads from a MarkDown file named _sampleinput.md_ and 
 
 ## History
 
+* **Version 0.2:** basic ability to work with images
 * **Version 0.1:** parses a MarkDown file that matches the syntax
 
 ## Dependencies
