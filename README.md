@@ -1,4 +1,4 @@
-MarkDownToTeXFlashcards
+MarkDownToTeXFlashcards [![Build Status](https://travis-ci.org/magnucki/MarkDownToTeXFlashcards.svg)](https://travis-ci.org/magnucki/MarkDownToTeXFlashcards)
 =======================
 
 A simple parser that creates LaTeX Flashcards from Markdown Dokuments
