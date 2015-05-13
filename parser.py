@@ -38,7 +38,7 @@ QUESTION_TAG = "* "
 ANSWER_TAG = "_"
 SECTION_TAG = "# "
 SUBSECTION_TAG = "## "
-PICTURE_TAG = "BILD: "
+PICTURE_TAG = "[img] "
 
 SECTION = "\section*{"
 SUBSECTION = "\subsection*{"
