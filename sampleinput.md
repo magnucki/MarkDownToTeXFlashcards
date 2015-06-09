@@ -7,4 +7,4 @@ Answer 1
 Answer 2
 
 ### Question 3
-[img]hallo.png
+Another Answer

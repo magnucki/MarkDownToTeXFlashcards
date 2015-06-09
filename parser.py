@@ -16,7 +16,7 @@ class State(Enum):
 
 
 # INPUT_FILE = "sampleinput.md"
-INPUT_FILE = "/Users/Rico/Dev/TeX/neurobio_Karteikarten/NB_Kartei.md"
+INPUT_FILE = "/Users/Rico/Dev/python/MDTTF/sampleinput.md"
 OUTPUT_FILE = ""
 
 QUESTION_START = "\\begin{karte}{"
@@ -34,7 +34,7 @@ END_FIGURE = "\\end{figure}\n"
 CURRENT_STATE = State.NONE
 LAST_STATE = State.NONE
 
-QUESTION_TAG = "* "
+QUESTION_TAG = "### "
 ANSWER_TAG = "_"
 SECTION_TAG = "# "
 SUBSECTION_TAG = "## "
@@ -58,6 +58,7 @@ def init_tex():
 
 
 def close_tex():
+    TEX_FILE.write(QUESTION_END)
     TEX_FILE.write(END_DOCUMENT)
     TEX_FILE.close()
 
@@ -81,16 +82,17 @@ def process_file():
 
 
 def parse_markdown(text_input):
+    question = False
+
     for string in text_input:
         string.rstrip(' ')
+        #Create Questions
         if string.startswith(QUESTION_TAG):
-            TEX_FILE.write(
-                QUESTION_START + string.strip('* \n') + CLOSING_BRACE)
-        elif string.startswith(ANSWER_TAG):
-            if (string.endswith(ANSWER_TAG + "\n") or string.endswith(ANSWER_TAG)):
-                TEX_FILE.write(string.strip('_') + QUESTION_END)
-            else:
-                TEX_FILE.write(string.strip('_'))
+            if question:
+                TEX_FILE.write(QUESTION_END)
+                question = False
+            TEX_FILE.write(QUESTION_START + string.strip(QUESTION_TAG + "\n") + CLOSING_BRACE)
+            question = True
         elif (string.endswith(ANSWER_TAG + "\n")):
             TEX_FILE.write(string.strip('_\n') + QUESTION_END)
         elif string.startswith(SECTION_TAG):
@@ -98,14 +100,12 @@ def parse_markdown(text_input):
                 SECTION + string.strip('# \n') + CLOSING_BRACE)
         elif string.startswith(SUBSECTION_TAG):
             TEX_FILE.write(
-                SUBSECTION + string.strip('#\n') + CLOSING_BRACE)
+                SUBSECTION + string.strip('# \n') + CLOSING_BRACE)
         elif string.startswith(PICTURE_TAG):
             TEX_FILE.write(
                 BEGIN_FIGURE + PICTURE_INCLUDE + string.strip(PICTURE_TAG + '\n') + CLOSING_BRACE + END_FIGURE)
-        elif string.endswith(ANSWER_TAG):
-            TEX_FILE.write(string.strip(QUESTION_TAG) + QUESTION_END)
         else:
-            TEX_FILE.write(string)
+            TEX_FILE.write(string.strip('\n'))
 
 
 def set_current_state(prefix):
@@ -139,6 +139,7 @@ def clean_tex_files():
 init_tex()
 process_file()
 close_tex()
+#clean_tex_files()
 
 # Run pdflatex to create pdf files
-#os.system("pdflatex flashcards.tex")
+os.system("pdflatex flashcards.tex")
